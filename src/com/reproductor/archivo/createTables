@@ -1,0 +1,139 @@
+CREATE TABLE public.tb_user
+(
+    id integer NOT NULL,
+    nombre character varying(100),
+    clave character varying (50),
+    primary key (id)
+);
+
+/*AUTOINCREMENTABLE*/
+CREATE SEQUENCE user_id_seq;
+ALTER TABLE tb_user ALTER id SET DEFAULT NEXTVAL('user_id_seq');
+
+
+CREATE TABLE public.tb_artista
+(
+    id_artista integer NOT NULL,
+    nm_artista character varying(100) NOT NULL,
+	st_artista character varying(1) NOT NULL,
+    primary key (id_artista)
+);
+
+/*AUTOINCREMENTABLE*/
+CREATE SEQUENCE artista_id_seq;
+ALTER TABLE tb_artista ALTER id_artista SET DEFAULT NEXTVAL('artista_id_seq');
+
+CREATE TABLE public.tb_genero
+(
+    id_genero integer NOT NULL,
+    nm_genero character varying(100) NOT NULL,
+	st_genero character varying(1) NOT NULL,
+    primary key (id_genero)
+);
+
+/*AUTOINCREMENTABLE*/
+CREATE SEQUENCE genero_id_seq;
+ALTER TABLE tb_genero ALTER id_genero SET DEFAULT NEXTVAL('genero_id_seq');
+
+
+CREATE TABLE public.tb_cancion(
+  id_cancion integer NOT NULL,
+  nm_cancion VARCHAR(100) NOT NULL,
+  artista int NOT NULL,
+  genero int NOT NULL,
+  album VARCHAR(100) NOT NULL,
+  imagen bytea,
+  duracion character varying(5),
+  url VARCHAR(300),
+  primary key (id_cancion)
+ );
+
+  alter table tb_cancion add constraint fk_id_artista
+  foreign key (artista)
+  references tb_artista (id_artista)
+  on delete cascade 
+  on update cascade;
+  
+   alter table tb_cancion add constraint fk_id_genero
+  foreign key (genero)
+  references tb_genero (id_genero)
+  on delete cascade 
+  on update cascade;
+  
+  /*AUTOINCREMENTABLE*/
+CREATE SEQUENCE cancion_id_seq;
+ALTER TABLE tb_cancion ALTER id_cancion SET DEFAULT NEXTVAL('cancion_id_seq');
+
+
+
+/*drop sequence cancion_id_seq para eliminar el autoincrementable*/
+
+
+
+/****************************************************************/
+/***************** TABLAS LISTAS REPRODUCCION *******************/
+/****************************************************************/
+
+CREATE TABLE public.tb_listap
+(
+    id integer NOT NULL,
+    nombre character varying(100),
+    status character varying (1),
+    primary key (id)
+);
+
+  /*AUTOINCREMENTABLE*/
+CREATE SEQUENCE listap_id_seq;
+ALTER TABLE tb_listap ALTER id SET DEFAULT NEXTVAL('listap_id_seq');
+
+CREATE TABLE public.tb_dLista(
+  id_dlista integer NOT NULL,
+  canciones int NOT NULL,
+  lista int NOT NULL,
+  status character varying (1) NOT NULL,
+	primary key (id_dlista)
+ );
+
+  alter table tb_dLista add constraint fk_tb_dlista_id_canciones
+  foreign key (canciones)
+  references tb_cancion (id_cancion)
+  on delete cascade 
+  on update cascade;
+  
+   alter table tb_dLista add constraint fk_tb_dlista_id_lista
+  foreign key (lista)
+  references tb_listap (id)
+  on delete cascade 
+  on update cascade;
+  
+    /*AUTOINCREMENTABLE*/
+CREATE SEQUENCE dlista_id_seq;
+ALTER TABLE tb_dLista ALTER id_dlista SET DEFAULT NEXTVAL('dlista_id_seq');
+
+-----------------------------------------------------------------------------
+/*TABLA FAVORITO*/
+
+
+CREATE TABLE public.tb_favorito(
+  id_fav int NOT NULL,
+  cancion int NOT NULL,
+  st_fav int NOT NULL,
+  primary key (id_fav)
+ );
+ 
+ 
+  alter table tb_favorito add constraint fk_id_cancion
+  foreign key (cancion)
+  references tb_cancion (id_cancion)
+  on delete cascade 
+  on update cascade;
+  
+  
+    /*AUTOINCREMENTABLE*/
+CREATE SEQUENCE favorit_id_seq;
+ALTER TABLE tb_favorito ALTER id_fav SET DEFAULT NEXTVAL('favorit_id_seq');
+
+********************************************************************************
+
+
+

@@ -1,0 +1,43 @@
+/****************************************************************/
+/************************** INSERTS *****************************/
+/****************************************************************/
+
+
+INSERT INTO public.tb_user(nombre, clave) VALUES 
+('user4', 123),
+('user3', 111),
+('user2', 222),
+('user1', 333),
+('admin', 444);
+
+INSERT INTO public.tb_artista(nm_artista, st_artista) VALUES 
+('VICO C', 1),
+('HOMBRES G', 1),
+('PANDA', 1),
+('ENANITOS VERDES', 1),
+('VERDES 70', 1);
+
+INSERT INTO public.tb_genero(nm_genero, st_genero) VALUES 
+('RAP', 1),
+('BALADAS', 1),
+('ROCK', 1);
+
+
+
+/****************************************************************/
+/*************************** SELECTS ****************************/
+/****************************************************************/
+
+select id_artista,nm_artista,st_artista from tb_artista where st_artista='1'
+select id_genero,nm_genero,st_genero from tb_genero where st_genero='1'
+select * from tb_cancion
+select * from tb_dLista
+select * from tb_listap
+
+SELECT
+tb_listap.nombre AS "NOMBRE LISTA",
+tb_cancion.nm_cancion AS "NOMBRE CANCION",
+tb_cancion.url AS "RUTA"
+FROM tb_dLista
+INNER JOIN tb_listap ON tb_dLista.lista=tb_listap.id
+INNER JOIN tb_cancion ON tb_dLista.canciones = tb_cancion.id_cancion
