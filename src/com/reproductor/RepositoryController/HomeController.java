@@ -53,7 +53,7 @@ public class HomeController implements ActionListener {
     String sql_fav = "select id_fav,id_cancion,nm_cancion,tb_artista.nm_artista,album,imagen,url FROM tb_favorito\n"
             + "INNER JOIN tb_cancion ON tb_favorito.cancion=tb_cancion.id_cancion "
             + "INNER JOIN tb_artista ON tb_cancion.artista=tb_artista.id_artista";
-    String sql_listas="SELECT id,nombre,status FROM tb_listap";
+    String sql_listas = "SELECT id,nombre,status FROM tb_listap";
 
     private List<JPanel> panelesFav;
     private List<JPanel> panelesRec;
@@ -72,7 +72,7 @@ public class HomeController implements ActionListener {
         home.setSize(1320, 828);
         panelesFav = new ArrayList<>();
         panelesLre = new ArrayList<>();
-        
+
         cargar_favoritos();
         cargarpnlFav();
         cargar_lrepr();
@@ -214,7 +214,7 @@ public class HomeController implements ActionListener {
 
         }
     }
-    
+
     public ArrayList<ListaReproduccion> cargar_lrepr() {
         conexion = new Conexion();
         try {
@@ -224,7 +224,7 @@ public class HomeController implements ActionListener {
                 Integer id = rs.getInt(1);
                 String nmLista = rs.getString(2);
                 String status = rs.getString(3);
-               
+
                 System.out.println("LISTA 1: " + rs.getInt(1));
                 System.out.println("LISTA 2: " + rs.getString(2));
                 System.out.println("LISTA 3: " + rs.getString(3));
@@ -237,8 +237,8 @@ public class HomeController implements ActionListener {
         }
         return lrepr;
     }
-    
-     public void cargarpnlLrp() {
+
+    public void cargarpnlLrp() {
 
         for (int i = 0; i < lrepr.size(); i++) {
             //cargamos las acciones de los accesos directos al Panel
@@ -246,12 +246,21 @@ public class HomeController implements ActionListener {
             JPanel contenedor = new JPanel();
             JLabel NLista = new JLabel();
             JLabel Caratula = new JLabel();
-            
+
             NLista.setText(lrepr.get(i).getNombre());
+            //imagen origen
+            Image img = new ImageIcon(getClass().getResource("/com/reproductor/img/playList.jpg")).getImage();
+            //escala imagen
+            Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(newimg);
+            //asigna a componenente JLabel
+
+            Caratula.setIcon(imageIcon);
+
             url = String.valueOf(favoritos.get(i).getUrl());
             url = url.replace("\\", "\\\\");
             NLista.setForeground(new java.awt.Color(255, 255, 255));
-            
+
             /*try {
                 BufferedImage bi = ImageIO.read(favoritos.get(i).getImagen());
                 cargarImagen(Caratula, bi);
@@ -259,8 +268,6 @@ public class HomeController implements ActionListener {
             } catch (IOException ex) {
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             }*/
-
-
             Border border = BorderFactory.createBevelBorder(BevelBorder.LOWERED);
             UIManager.put("ToolTip.border", border);//coloca el tipo de borde
             UIManager.put("ToolTip.foreground", new ColorUIResource(Color.white));// color de las letras
@@ -277,7 +284,7 @@ public class HomeController implements ActionListener {
             }*/
             panel.add(Caratula);
             panel.add(NLista);
-            panel.setToolTipText("Favoritos");
+            panel.setToolTipText(NLista.getText());
 
             panel.addMouseListener(new MouseListener() {
                 @Override
@@ -317,7 +324,6 @@ public class HomeController implements ActionListener {
 
         }
     }
-    
 
     private void reproducir(String nombre, String artista, JLabel caratula) {
         conexion = new Conexion();

@@ -390,7 +390,7 @@ public class pnlHome extends javax.swing.JPanel {
 
         pnlIngreso.add(pnlIngresoSur, java.awt.BorderLayout.PAGE_END);
 
-        pnlIngresoCentro.setBackground(new java.awt.Color(255, 51, 102));
+        pnlIngresoCentro.setBackground(new java.awt.Color(18, 18, 18));
         pnlIngresoCentro.setPreferredSize(new java.awt.Dimension(1200, 800));
 
         pnlListas.setBackground(new java.awt.Color(18, 18, 18));
