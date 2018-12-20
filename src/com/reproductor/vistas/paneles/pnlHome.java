@@ -30,20 +30,6 @@ public class pnlHome extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlReproductorInterno = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
-        pnlNorteR = new javax.swing.JPanel();
-        labelExit = new javax.swing.JLabel();
-        pnlSurR = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        labelNMusica = new javax.swing.JLabel();
-        labelArtista = new javax.swing.JLabel();
-        btnSiguiente = new javax.swing.JButton();
-        btnAtras = new javax.swing.JButton();
-        btnPlay = new javax.swing.JButton();
-        pnlCentralR = new javax.swing.JPanel();
-        pnlEcualizador = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         pnlFondoOpcion = new javax.swing.JPanel();
         pnlIngreso = new javax.swing.JPanel();
         pnlIngresoNorte = new javax.swing.JPanel();
@@ -52,11 +38,11 @@ public class pnlHome extends javax.swing.JPanel {
         pnlIngresoSur = new javax.swing.JPanel();
         reproductor = new javax.swing.JPanel();
         labelImagen = new javax.swing.JLabel();
-        labelNMusica1 = new javax.swing.JLabel();
-        labelArtista1 = new javax.swing.JLabel();
+        labelNMusica = new javax.swing.JLabel();
+        labelArtista = new javax.swing.JLabel();
         btnSiguiente1 = new javax.swing.JButton();
         btnAtras1 = new javax.swing.JButton();
-        btnPlay1 = new javax.swing.JButton();
+        btnPlay = new javax.swing.JButton();
         pnlIngresoCentro = new javax.swing.JPanel();
         pnlListas = new javax.swing.JPanel();
         labelFavorito = new javax.swing.JLabel();
@@ -71,184 +57,11 @@ public class pnlHome extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         pnlInternoRep1 = new javax.swing.JPanel();
 
-        pnlReproductorInterno.setUndecorated(true);
-
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        pnlNorteR.setBackground(new java.awt.Color(18, 18, 18));
-        pnlNorteR.setPreferredSize(new java.awt.Dimension(663, 32));
-
-        labelExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/ic_exi.png"))); // NOI18N
-        labelExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        labelExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelExitMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelExitMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelExitMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlNorteRLayout = new javax.swing.GroupLayout(pnlNorteR);
-        pnlNorteR.setLayout(pnlNorteRLayout);
-        pnlNorteRLayout.setHorizontalGroup(
-            pnlNorteRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNorteRLayout.createSequentialGroup()
-                .addGap(0, 681, Short.MAX_VALUE)
-                .addComponent(labelExit))
-        );
-        pnlNorteRLayout.setVerticalGroup(
-            pnlNorteRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNorteRLayout.createSequentialGroup()
-                .addComponent(labelExit)
-                .addGap(0, 0, 0))
-        );
-
-        jPanel1.add(pnlNorteR, java.awt.BorderLayout.PAGE_START);
-
-        pnlSurR.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setBackground(new java.awt.Color(40, 40, 40));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Imagen");
-
-        labelNMusica.setBackground(new java.awt.Color(0, 0, 0));
-        labelNMusica.setText("NOMBRE DE LA MUSICA");
-
-        labelArtista.setBackground(new java.awt.Color(0, 0, 0));
-        labelArtista.setText("ARTISTA");
-
-        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/siguiente.png"))); // NOI18N
-        btnSiguiente.setToolTipText("");
-        btnSiguiente.setBorderPainted(false);
-        btnSiguiente.setContentAreaFilled(false);
-        btnSiguiente.setEnabled(false);
-        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSiguienteActionPerformed(evt);
-            }
-        });
-
-        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/anterior.png"))); // NOI18N
-        btnAtras.setToolTipText("");
-        btnAtras.setBorderPainted(false);
-        btnAtras.setContentAreaFilled(false);
-        btnAtras.setEnabled(false);
-        btnAtras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtrasActionPerformed(evt);
-            }
-        });
-
-        btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/pausa.png"))); // NOI18N
-        btnPlay.setToolTipText("");
-        btnPlay.setBorderPainted(false);
-        btnPlay.setContentAreaFilled(false);
-        btnPlay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlayActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlSurRLayout = new javax.swing.GroupLayout(pnlSurR);
-        pnlSurR.setLayout(pnlSurRLayout);
-        pnlSurRLayout.setHorizontalGroup(
-            pnlSurRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSurRLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(pnlSurRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(292, 292, 292))
-        );
-        pnlSurRLayout.setVerticalGroup(
-            pnlSurRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSurRLayout.createSequentialGroup()
-                .addGroup(pnlSurRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlSurRLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlSurRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlSurRLayout.createSequentialGroup()
-                                .addComponent(labelNMusica)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelArtista))
-                            .addComponent(btnPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAtras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 0, 0))
-        );
-
-        jPanel1.add(pnlSurR, java.awt.BorderLayout.PAGE_END);
-
-        pnlCentralR.setBackground(new java.awt.Color(0, 204, 255));
-        pnlCentralR.setMinimumSize(new java.awt.Dimension(200, 250));
-        pnlCentralR.setPreferredSize(new java.awt.Dimension(663, 230));
-        pnlCentralR.setLayout(new java.awt.BorderLayout());
-
-        pnlEcualizador.setBackground(new java.awt.Color(18, 18, 18));
-
-        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/radio.gif"))); // NOI18N
-
-        javax.swing.GroupLayout pnlEcualizadorLayout = new javax.swing.GroupLayout(pnlEcualizador);
-        pnlEcualizador.setLayout(pnlEcualizadorLayout);
-        pnlEcualizadorLayout.setHorizontalGroup(
-            pnlEcualizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEcualizadorLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-        pnlEcualizadorLayout.setVerticalGroup(
-            pnlEcualizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlEcualizadorLayout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addGap(0, 0, 0))
-        );
-
-        pnlCentralR.add(pnlEcualizador, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(pnlCentralR, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout pnlReproductorInternoLayout = new javax.swing.GroupLayout(pnlReproductorInterno.getContentPane());
-        pnlReproductorInterno.getContentPane().setLayout(pnlReproductorInternoLayout);
-        pnlReproductorInternoLayout.setHorizontalGroup(
-            pnlReproductorInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 726, Short.MAX_VALUE)
-            .addGroup(pnlReproductorInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlReproductorInternoLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        pnlReproductorInternoLayout.setVerticalGroup(
-            pnlReproductorInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
-            .addGroup(pnlReproductorInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlReproductorInternoLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
         setBackground(new java.awt.Color(24, 24, 24));
         setPreferredSize(new java.awt.Dimension(1200, 710));
 
         pnlFondoOpcion.setBackground(new java.awt.Color(204, 51, 255));
-        pnlFondoOpcion.setPreferredSize(new java.awt.Dimension(1200, 710));
+        pnlFondoOpcion.setPreferredSize(new java.awt.Dimension(1200, 800));
 
         pnlIngreso.setBackground(new java.awt.Color(255, 51, 102));
         pnlIngreso.setPreferredSize(new java.awt.Dimension(1129, 491));
@@ -296,13 +109,13 @@ public class pnlHome extends javax.swing.JPanel {
         labelImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelImagen.setText("Imagen");
 
-        labelNMusica1.setBackground(new java.awt.Color(0, 0, 0));
-        labelNMusica1.setForeground(new java.awt.Color(255, 255, 255));
-        labelNMusica1.setText("NOMBRE DE LA MUSICA");
+        labelNMusica.setBackground(new java.awt.Color(0, 0, 0));
+        labelNMusica.setForeground(new java.awt.Color(255, 255, 255));
+        labelNMusica.setText("NOMBRE DE LA MUSICA");
 
-        labelArtista1.setBackground(new java.awt.Color(0, 0, 0));
-        labelArtista1.setForeground(new java.awt.Color(255, 255, 255));
-        labelArtista1.setText("ARTISTA");
+        labelArtista.setBackground(new java.awt.Color(0, 0, 0));
+        labelArtista.setForeground(new java.awt.Color(255, 255, 255));
+        labelArtista.setText("ARTISTA");
 
         btnSiguiente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/siguiente.png"))); // NOI18N
         btnSiguiente1.setToolTipText("");
@@ -326,13 +139,13 @@ public class pnlHome extends javax.swing.JPanel {
             }
         });
 
-        btnPlay1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/play.png"))); // NOI18N
-        btnPlay1.setToolTipText("");
-        btnPlay1.setBorderPainted(false);
-        btnPlay1.setContentAreaFilled(false);
-        btnPlay1.addActionListener(new java.awt.event.ActionListener() {
+        btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/play.png"))); // NOI18N
+        btnPlay.setToolTipText("");
+        btnPlay.setBorderPainted(false);
+        btnPlay.setContentAreaFilled(false);
+        btnPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlay1ActionPerformed(evt);
+                btnPlayActionPerformed(evt);
             }
         });
 
@@ -345,12 +158,12 @@ public class pnlHome extends javax.swing.JPanel {
                 .addComponent(labelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(reproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelArtista1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNMusica1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 398, Short.MAX_VALUE)
                 .addComponent(btnAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(btnPlay1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnSiguiente1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(398, Short.MAX_VALUE))
@@ -366,10 +179,10 @@ public class pnlHome extends javax.swing.JPanel {
                     .addGroup(reproductorLayout.createSequentialGroup()
                         .addGroup(reproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(reproductorLayout.createSequentialGroup()
-                                .addComponent(labelNMusica1)
+                                .addComponent(labelNMusica)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelArtista1))
-                            .addComponent(btnPlay1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelArtista))
+                            .addComponent(btnPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSiguiente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAtras1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(12, 40, Short.MAX_VALUE))))
@@ -551,34 +364,9 @@ public class pnlHome extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlFondoOpcion, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void labelExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelExitMouseClicked
-
-        
-    }//GEN-LAST:event_labelExitMouseClicked
-
-    private void labelExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelExitMouseEntered
-        labelExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/ic_exih.png"))); // NOI18N
-    }//GEN-LAST:event_labelExitMouseEntered
-
-    private void labelExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelExitMouseExited
-        labelExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/ic_exi.png"))); // NOI18N
-    }//GEN-LAST:event_labelExitMouseExited
-
-    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-
-    }//GEN-LAST:event_btnSiguienteActionPerformed
-
-    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAtrasActionPerformed
-
-    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlayActionPerformed
 
     private void btnSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente1ActionPerformed
         // TODO add your handling code here:
@@ -588,37 +376,26 @@ public class pnlHome extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAtras1ActionPerformed
 
-    private void btnPlay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlay1ActionPerformed
+    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPlay1ActionPerformed
+    }//GEN-LAST:event_btnPlayActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnAtras;
     public javax.swing.JButton btnAtras1;
     public javax.swing.JButton btnPlay;
-    public javax.swing.JButton btnPlay1;
-    public javax.swing.JButton btnSiguiente;
     public javax.swing.JButton btnSiguiente1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JLabel labelArtista;
-    public javax.swing.JLabel labelArtista1;
-    public javax.swing.JLabel labelExit;
     private javax.swing.JLabel labelFavorito;
     private javax.swing.JLabel labelFavorito1;
     private javax.swing.JLabel labelFavorito2;
     public javax.swing.JLabel labelImagen;
     public javax.swing.JLabel labelNMusica;
-    public javax.swing.JLabel labelNMusica1;
-    private javax.swing.JPanel pnlCentralR;
-    private javax.swing.JPanel pnlEcualizador;
     public javax.swing.JPanel pnlFavoritos;
     public javax.swing.JPanel pnlFondoOpcion;
     public javax.swing.JPanel pnlIngreso;
@@ -629,10 +406,7 @@ public class pnlHome extends javax.swing.JPanel {
     public javax.swing.JPanel pnlInternoRep;
     public javax.swing.JPanel pnlInternoRep1;
     public javax.swing.JPanel pnlListas;
-    private javax.swing.JPanel pnlNorteR;
     public javax.swing.JPanel pnlRecientes;
-    public javax.swing.JDialog pnlReproductorInterno;
-    private javax.swing.JPanel pnlSurR;
     private javax.swing.JPanel reproductor;
     // End of variables declaration//GEN-END:variables
 }

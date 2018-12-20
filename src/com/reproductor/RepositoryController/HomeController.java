@@ -3,6 +3,7 @@ package com.reproductor.RepositoryController;
 import com.reproductor.modelo.Conexion;
 import com.reproductor.modelo.Favoritos;
 import com.reproductor.modelo.ListaReproduccion;
+import com.reproductor.modelo.MusicasListasR;
 import com.reproductor.modelo.Reproductor;
 import com.reproductor.vistas.Principal;
 import com.reproductor.vistas.paneles.pnlCanciones;
@@ -60,6 +61,7 @@ public class HomeController implements ActionListener {
     private List<JPanel> panelesLre;
     private ArrayList<Favoritos> favoritos;
     private ArrayList<ListaReproduccion> lrepr;
+    private ArrayList<MusicasListasR> musicas;
     ImageIcon foto;
     Reproductor mi_reproductor;
     String url = "";
@@ -143,18 +145,6 @@ public class HomeController implements ActionListener {
             } catch (IOException ex) {
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            ;
-            /*try {
-                bi = ImageIO.read(favoritos.get(i).getImagen());
-                foto = new ImageIcon(bi);
-                Image img = foto.getImage();
-                Image newimg = img.getScaledInstance(75, 75, java.awt.Image.SCALE_SMOOTH);
-                ImageIcon newicon = new ImageIcon(newimg);
-                Caratula.setIcon(newicon);
-
-            } catch (IOException ex) {
-                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
 
             Border border = BorderFactory.createBevelBorder(BevelBorder.LOWERED);
             UIManager.put("ToolTip.border", border);//coloca el tipo de borde
@@ -165,16 +155,12 @@ public class HomeController implements ActionListener {
             panel.setBackground(new java.awt.Color(18, 18, 18));
 
             panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-            /*File archivo = new File(directorio + separador + "src\\com\\mancompsolutions\\imgs\\" + sub_menu.get(i).getId_msc() + ".png");
-            if (archivo.exists()) {
-                ic_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mancompsolutions/imgs/" + sub_menu.get(i).getId_msc() + ".png"))); // NOI18N
-                panel.add(ic_icon);
-            }*/
+
             panel.add(Caratula);
             panel.add(NMusica);
             panel.add(Artista);
             panel.add(Album);
-            panel.setToolTipText("Favoritos");
+            panel.setToolTipText(NMusica.getText());
 
             panel.addMouseListener(new MouseListener() {
                 @Override
@@ -261,13 +247,6 @@ public class HomeController implements ActionListener {
             url = url.replace("\\", "\\\\");
             NLista.setForeground(new java.awt.Color(255, 255, 255));
 
-            /*try {
-                BufferedImage bi = ImageIO.read(favoritos.get(i).getImagen());
-                cargarImagen(Caratula, bi);
-
-            } catch (IOException ex) {
-                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
             Border border = BorderFactory.createBevelBorder(BevelBorder.LOWERED);
             UIManager.put("ToolTip.border", border);//coloca el tipo de borde
             UIManager.put("ToolTip.foreground", new ColorUIResource(Color.white));// color de las letras
@@ -277,11 +256,7 @@ public class HomeController implements ActionListener {
             panel.setBackground(new java.awt.Color(18, 18, 18));
 
             panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-            /*File archivo = new File(directorio + separador + "src\\com\\mancompsolutions\\imgs\\" + sub_menu.get(i).getId_msc() + ".png");
-            if (archivo.exists()) {
-                ic_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mancompsolutions/imgs/" + sub_menu.get(i).getId_msc() + ".png"))); // NOI18N
-                panel.add(ic_icon);
-            }*/
+            
             panel.add(Caratula);
             panel.add(NLista);
             panel.setToolTipText(NLista.getText());
@@ -290,7 +265,19 @@ public class HomeController implements ActionListener {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     JOptionPane.showMessageDialog(null, NLista.getText());
-                    //reproducir(NMusica.getText(), Artista.getText(), Caratula);
+                    //CARGAMOS LAS MUSICAS ASOCIADAS A UNA LISTAS DE REPRODUCCION
+                    cargarMusicas(NLista.getText());
+                    for (int i = 0; i < musicas.size(); i++) {
+                         BufferedImage bi;
+                        try {
+                            bi = ImageIO.read(musicas.get(i).getImagen());
+                            reproducirLista(musicas.get(i).getNmCancion(), musicas.get(i).getNmArtista(), musicas.get(i).getUrl(), bi);
+                        } catch (IOException ex) {
+                            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                    }
+                    
                 }
 
                 @Override
@@ -350,6 +337,7 @@ public class HomeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.home.btnPlay) {
+            
             if (play.equals("pause")) {
                 try {
                     mi_reproductor.Pausa();
@@ -379,5 +367,61 @@ public class HomeController implements ActionListener {
         Image newimg = img.getScaledInstance(75, 75, java.awt.Image.SCALE_SMOOTH);
         ImageIcon newicon = new ImageIcon(newimg);
         Caratula.setIcon(newicon);
+    }
+
+    private ArrayList<MusicasListasR> cargarMusicas(String nombreLista) {
+        String sql_cmusica = "SELECT id_dlista,tb_cancion.nm_cancion,tb_artista.nm_artista,tb_cancion.url,tb_cancion.imagen,tb_listap.nombre from tb_dlista\n"
+                + "INNER JOIN tb_cancion ON tb_dlista.canciones=tb_cancion.id_cancion\n"
+                + "INNER JOIN tb_listap ON tb_dlista.lista=tb_listap.id\n"
+                + "INNER JOIN tb_artista ON tb_cancion.artista=tb_artista.id_artista\n"
+                + "WHERE tb_listap.nombre='" + nombreLista + "'";
+        InputStream is;
+        try {
+            ResultSet rs = conexion.obtenerDatos(sql_cmusica);
+            musicas = new ArrayList<>();
+            while (rs.next()) {
+                Integer id_dlista = rs.getInt(1);
+                String nm_cancion = rs.getString(2);
+                String nm_artista = rs.getString(3);
+                String ruta = rs.getString(4);
+                is = rs.getBinaryStream(5);
+                String lista = rs.getString(5);
+                
+                
+                System.out.println("Musica: " );
+                System.out.println("Musica: " + rs.getInt(1));
+                System.out.println("Musica: " + rs.getString(2));
+                System.out.println("Musica: " + rs.getString(3));
+                System.out.println("Musica: " + rs.getString(4));
+                System.out.println("Musica: " + rs.getBinaryStream(5));
+                System.out.println("Musica: " + rs.getString(6));
+                
+                musicas.add(new MusicasListasR(id_dlista, nm_cancion, nm_artista, ruta, is, lista));
+
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(home, "Error al cargar las musicas asociadas a la lista de Reproduccion", "Reproductor", JOptionPane.ERROR_MESSAGE);
+            System.out.println("ERROR FAVORITOS:" + e);
+        }
+        return musicas;
+
+    }
+    
+    private void reproducirLista(String nombre, String artista, String ruta, BufferedImage Imagen) {
+        try {
+
+            this.home.btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/pausa.png"))); // NOI18N
+            // mandamos los datos a las cajas de texto del reproductor
+            this.home.labelNMusica.setText(nombre);
+            this.home.labelArtista.setText(artista);
+            cargarImagen(this.home.labelImagen, Imagen);
+            
+
+            mi_reproductor.AbrirFichero(ruta);
+            mi_reproductor.Play();
+
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
