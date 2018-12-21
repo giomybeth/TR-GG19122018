@@ -25,6 +25,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -34,6 +36,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -62,10 +65,12 @@ public class HomeController implements ActionListener {
     private ArrayList<Favoritos> favoritos;
     private ArrayList<ListaReproduccion> lrepr;
     private ArrayList<MusicasListasR> musicas;
+    private MusicasListasR playList;
     ImageIcon foto;
     Reproductor mi_reproductor;
     String url = "";
     String play = "pause";
+    Integer r_actual = 0;
 
     public HomeController(Principal interfaz, pnlHome home) {
         this.home = home;
@@ -256,7 +261,7 @@ public class HomeController implements ActionListener {
             panel.setBackground(new java.awt.Color(18, 18, 18));
 
             panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-            
+
             panel.add(Caratula);
             panel.add(NLista);
             panel.setToolTipText(NLista.getText());
@@ -267,17 +272,37 @@ public class HomeController implements ActionListener {
                     JOptionPane.showMessageDialog(null, NLista.getText());
                     //CARGAMOS LAS MUSICAS ASOCIADAS A UNA LISTAS DE REPRODUCCION
                     cargarMusicas(NLista.getText());
-                    for (int i = 0; i < musicas.size(); i++) {
-                         BufferedImage bi;
+                    /*for (int i = 0; i < musicas.size(); i++) {
+                        String nombre = musicas.get(i).getNmCancion();
+                        String artista = musicas.get(i).getNmArtista();
+
+                        Timer timer = new Timer();
+                        TimerTask task = new TimerTask() {
+                            @Override
+                            public void run() {
+                                reproducir(nombre, artista, Caratula);
+                            }
+                        };
+                        timer.schedule(task, 0, 60000);
+
+                        r_actual = i;
                         try {
-                            bi = ImageIO.read(musicas.get(i).getImagen());
-                            reproducirLista(musicas.get(i).getNmCancion(), musicas.get(i).getNmArtista(), musicas.get(i).getUrl(), bi);
-                        } catch (IOException ex) {
-                            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                            Thread t = new Thread();
+                            System.out.println("ENTRANDO");
+                            System.out.println("A REPRODUCIR: " + musicas.get(i).getNmCancion());
+                            reproducir(musicas.get(i).getNmCancion(), musicas.get(i).getNmArtista(), Caratula);
+                            t.sleep(5000);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
                         }
-                        
-                    }
-                    
+                    }*/
+
+                    /*/try {
+                        //SE OBTIENE EL VALOR DE LOS SEGUNDOS DE LA MUSICA
+                        Thread.currentThread().sleep(60000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }*/
                 }
 
                 @Override
@@ -337,7 +362,7 @@ public class HomeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.home.btnPlay) {
-            
+
             if (play.equals("pause")) {
                 try {
                     mi_reproductor.Pausa();
@@ -364,17 +389,17 @@ public class HomeController implements ActionListener {
     private void cargarImagen(JLabel Caratula, BufferedImage bi) {
         foto = new ImageIcon(bi);
         Image img = foto.getImage();
-        Image newimg = img.getScaledInstance(75, 75, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
         ImageIcon newicon = new ImageIcon(newimg);
         Caratula.setIcon(newicon);
     }
 
     private ArrayList<MusicasListasR> cargarMusicas(String nombreLista) {
-        String sql_cmusica = "SELECT id_dlista,tb_cancion.nm_cancion,tb_artista.nm_artista,tb_cancion.url,tb_cancion.imagen,tb_listap.nombre from tb_dlista\n"
+        String sql_cmusica = "SELECT id_dlista,tb_cancion.nm_cancion,tb_artista.nm_artista,tb_cancion.url,tb_cancion.imagen,tb_listap.nombre, tb_cancion.duracion from tb_dlista\n"
                 + "INNER JOIN tb_cancion ON tb_dlista.canciones=tb_cancion.id_cancion\n"
                 + "INNER JOIN tb_listap ON tb_dlista.lista=tb_listap.id\n"
                 + "INNER JOIN tb_artista ON tb_cancion.artista=tb_artista.id_artista\n"
-                + "WHERE tb_listap.nombre='" + nombreLista + "'";
+                + "WHERE tb_listap.nombre='" + nombreLista + "' ORDER BY id_dlista";
         InputStream is;
         try {
             ResultSet rs = conexion.obtenerDatos(sql_cmusica);
@@ -385,18 +410,27 @@ public class HomeController implements ActionListener {
                 String nm_artista = rs.getString(3);
                 String ruta = rs.getString(4);
                 is = rs.getBinaryStream(5);
-                String lista = rs.getString(5);
+                String lista = rs.getString(6);
+                String duracion = rs.getString(7);
+                Integer decimales = duracion.length() - 1;
+                
+                System.out.println("ULTIMO:" +duracion.charAt(duracion.length()-1));
                 
                 
-                System.out.println("Musica: " );
-                System.out.println("Musica: " + rs.getInt(1));
-                System.out.println("Musica: " + rs.getString(2));
-                System.out.println("Musica: " + rs.getString(3));
-                System.out.println("Musica: " + rs.getString(4));
-                System.out.println("Musica: " + rs.getBinaryStream(5));
-                System.out.println("Musica: " + rs.getString(6));
                 
-                musicas.add(new MusicasListasR(id_dlista, nm_cancion, nm_artista, ruta, is, lista));
+                String sSubCadena = duracion.substring((decimales - 1), decimales);
+
+                System.out.println("---------------------------------------");
+                System.out.println("id_dlista: " + rs.getInt(1));
+                System.out.println("nm_cancion: " + rs.getString(2));
+                System.out.println("nm_artista: " + rs.getString(3));
+                System.out.println("ruta: " + rs.getString(4));
+                System.out.println("Imagen: " + rs.getBinaryStream(5));
+                System.out.println("Lista: " + rs.getString(6));
+                System.out.println("Duracion: " + duracion);
+                System.out.println("Ultimos Segundos: " + sSubCadena);
+
+                musicas.add(new MusicasListasR(id_dlista, nm_cancion, nm_artista, ruta, is, duracion, lista));
 
             }
         } catch (SQLException e) {
@@ -406,7 +440,7 @@ public class HomeController implements ActionListener {
         return musicas;
 
     }
-    
+
     private void reproducirLista(String nombre, String artista, String ruta, BufferedImage Imagen) {
         try {
 
@@ -415,7 +449,6 @@ public class HomeController implements ActionListener {
             this.home.labelNMusica.setText(nombre);
             this.home.labelArtista.setText(artista);
             cargarImagen(this.home.labelImagen, Imagen);
-            
 
             mi_reproductor.AbrirFichero(ruta);
             mi_reproductor.Play();
@@ -424,4 +457,5 @@ public class HomeController implements ActionListener {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

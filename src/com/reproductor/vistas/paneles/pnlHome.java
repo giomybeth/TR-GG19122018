@@ -41,8 +41,9 @@ public class pnlHome extends javax.swing.JPanel {
         labelNMusica = new javax.swing.JLabel();
         labelArtista = new javax.swing.JLabel();
         btnSiguiente1 = new javax.swing.JButton();
-        btnAtras1 = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
         btnPlay = new javax.swing.JButton();
+        btnSiguiente2 = new javax.swing.JButton();
         pnlIngresoCentro = new javax.swing.JPanel();
         pnlListas = new javax.swing.JPanel();
         labelFavorito = new javax.swing.JLabel();
@@ -99,15 +100,14 @@ public class pnlHome extends javax.swing.JPanel {
         pnlIngreso.add(pnlIngresoNorte, java.awt.BorderLayout.PAGE_START);
 
         pnlIngresoSur.setBackground(new java.awt.Color(102, 51, 255));
-        pnlIngresoSur.setPreferredSize(new java.awt.Dimension(862, 92));
+        pnlIngresoSur.setPreferredSize(new java.awt.Dimension(862, 80));
 
-        reproductor.setBackground(new java.awt.Color(18, 18, 18));
-        reproductor.setPreferredSize(new java.awt.Dimension(1200, 92));
+        reproductor.setBackground(new java.awt.Color(53, 53, 53));
+        reproductor.setPreferredSize(new java.awt.Dimension(1200, 80));
 
         labelImagen.setBackground(new java.awt.Color(40, 40, 40));
         labelImagen.setForeground(new java.awt.Color(255, 255, 255));
         labelImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelImagen.setText("Imagen");
 
         labelNMusica.setBackground(new java.awt.Color(0, 0, 0));
         labelNMusica.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,21 +121,19 @@ public class pnlHome extends javax.swing.JPanel {
         btnSiguiente1.setToolTipText("");
         btnSiguiente1.setBorderPainted(false);
         btnSiguiente1.setContentAreaFilled(false);
-        btnSiguiente1.setEnabled(false);
         btnSiguiente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguiente1ActionPerformed(evt);
             }
         });
 
-        btnAtras1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/anterior.png"))); // NOI18N
-        btnAtras1.setToolTipText("");
-        btnAtras1.setBorderPainted(false);
-        btnAtras1.setContentAreaFilled(false);
-        btnAtras1.setEnabled(false);
-        btnAtras1.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/anterior.png"))); // NOI18N
+        btnAtras.setToolTipText("");
+        btnAtras.setBorderPainted(false);
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtras1ActionPerformed(evt);
+                btnAtrasActionPerformed(evt);
             }
         });
 
@@ -146,6 +144,16 @@ public class pnlHome extends javax.swing.JPanel {
         btnPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlayActionPerformed(evt);
+            }
+        });
+
+        btnSiguiente2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/playList.png"))); // NOI18N
+        btnSiguiente2.setToolTipText("");
+        btnSiguiente2.setBorderPainted(false);
+        btnSiguiente2.setContentAreaFilled(false);
+        btnSiguiente2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguiente2ActionPerformed(evt);
             }
         });
 
@@ -161,31 +169,33 @@ public class pnlHome extends javax.swing.JPanel {
                     .addComponent(labelArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 398, Short.MAX_VALUE)
-                .addComponent(btnAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnSiguiente1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(398, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                .addComponent(btnSiguiente2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91))
         );
         reproductorLayout.setVerticalGroup(
             reproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reproductorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(reproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(5, 5, 5)
+                .addComponent(labelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                .addGap(5, 5, 5))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reproductorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(reproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(reproductorLayout.createSequentialGroup()
-                        .addComponent(labelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(reproductorLayout.createSequentialGroup()
-                        .addGroup(reproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(reproductorLayout.createSequentialGroup()
-                                .addComponent(labelNMusica)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelArtista))
-                            .addComponent(btnPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSiguiente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAtras1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(12, 40, Short.MAX_VALUE))))
+                        .addComponent(labelNMusica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelArtista))
+                    .addComponent(btnPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSiguiente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAtras, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSiguiente2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout pnlIngresoSurLayout = new javax.swing.GroupLayout(pnlIngresoSur);
@@ -347,7 +357,7 @@ public class pnlHome extends javax.swing.JPanel {
         );
         pnlFondoOpcionLayout.setVerticalGroup(
             pnlFondoOpcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 772, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
             .addGroup(pnlFondoOpcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnlIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE))
         );
@@ -362,9 +372,7 @@ public class pnlHome extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlFondoOpcion, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pnlFondoOpcion, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -372,19 +380,24 @@ public class pnlHome extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSiguiente1ActionPerformed
 
-    private void btnAtras1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtras1ActionPerformed
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAtras1ActionPerformed
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPlayActionPerformed
 
+    private void btnSiguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSiguiente2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnAtras1;
+    public javax.swing.JButton btnAtras;
     public javax.swing.JButton btnPlay;
     public javax.swing.JButton btnSiguiente1;
+    public javax.swing.JButton btnSiguiente2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JScrollPane jScrollPane1;

@@ -18,13 +18,15 @@ public class MusicasListasR {
     private String url;
     private InputStream imagen;
     private String nmLista;
+    private String duracion;
 
-    public MusicasListasR(int id, String nmCancion, String nmArtista, String url, InputStream imagen, String nmLista) {
+    public MusicasListasR(int id, String nmCancion, String nmArtista, String url, InputStream imagen, String duracion,String nmLista) {
         this.id = id;
         this.nmCancion = nmCancion;
         this.nmArtista = nmArtista;
         this.url = url;
         this.imagen = imagen;
+        this.duracion = duracion;
         this.nmLista = nmLista;
     }
 
@@ -74,6 +76,14 @@ public class MusicasListasR {
 
     public void setNmLista(String nmLista) {
         this.nmLista = nmLista;
+    }
+
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
     }
     
     
