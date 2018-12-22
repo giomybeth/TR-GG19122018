@@ -42,6 +42,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.table.DefaultTableModel;
+import javax.xml.transform.Source;
 //import com.reproductor.vistas.paneles.pnlHome;
 
 /**
@@ -65,12 +67,12 @@ public class HomeController implements ActionListener {
     private ArrayList<Favoritos> favoritos;
     private ArrayList<ListaReproduccion> lrepr;
     private ArrayList<MusicasListasR> musicas;
-    private MusicasListasR playList;
     ImageIcon foto;
     Reproductor mi_reproductor;
     String url = "";
     String play = "pause";
     Integer r_actual = 0;
+    String nombreLista;
 
     public HomeController(Principal interfaz, pnlHome home) {
         this.home = home;
@@ -86,6 +88,8 @@ public class HomeController implements ActionListener {
         cargarpnlLrp();
 
         this.home.btnPlay.addActionListener(this);
+        this.home.btnSiguiente.addActionListener(this);
+        this.home.btnAtras.addActionListener(this);
     }
 
     /*CARGA LA LISTA DE ESCUCHADAS RECIENTEMENTE*/
@@ -270,8 +274,30 @@ public class HomeController implements ActionListener {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     JOptionPane.showMessageDialog(null, NLista.getText());
+                    r_actual=0;
                     //CARGAMOS LAS MUSICAS ASOCIADAS A UNA LISTAS DE REPRODUCCION
                     cargarMusicas(NLista.getText());
+                    nombreLista = NLista.getText();
+
+                    //reproducimos la primera musica
+                    try {
+                        BufferedImage bi = ImageIO.read(musicas.get(r_actual).getImagen());
+                        cargarImagen(home.labelImagen, bi);
+                        home.labelNMusica.setText(musicas.get(r_actual).getNmCancion());
+                        home.labelArtista.setText(musicas.get(r_actual).getNmArtista());
+                        System.out.println("TOCANDO MUSICA:" + musicas.get(r_actual).getUrl());
+                        home.btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/pausa.png"))); // NOI18N
+                        mi_reproductor.AbrirFichero(musicas.get(0).getUrl());
+                        mi_reproductor.Play();
+                        // SE INCREMENTA LA VARIABLE ACTUAL
+                        /*AQUI VA  UN TIMER QUE VERIFIQUE CADA CIERTO TIEMPO SI LA VARIABLE DE LA MUSICA HA CAMBIADO*/
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception ex) {
+                        Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     /*for (int i = 0; i < musicas.size(); i++) {
                         String nombre = musicas.get(i).getNmCancion();
                         String artista = musicas.get(i).getNmArtista();
@@ -297,7 +323,7 @@ public class HomeController implements ActionListener {
                         }
                     }*/
 
-                    /*/try {
+ /*/try {
                         //SE OBTIENE EL VALOR DE LOS SEGUNDOS DE LA MUSICA
                         Thread.currentThread().sleep(60000);
                     } catch (InterruptedException ex) {
@@ -362,7 +388,6 @@ public class HomeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.home.btnPlay) {
-
             if (play.equals("pause")) {
                 try {
                     mi_reproductor.Pausa();
@@ -384,6 +409,69 @@ public class HomeController implements ActionListener {
             }
 
         }
+        if (e.getSource() == this.home.btnSiguiente) {
+            cargarMusicas(nombreLista);
+            System.out.println("ACTUAL BTN SIGUIENTE:"+r_actual);
+            r_actual++;
+            if (r_actual < musicas.size()) {
+                try {
+                    home.labelNMusica.setText(musicas.get(r_actual).getNmCancion());
+                    home.labelArtista.setText(musicas.get(r_actual).getNmArtista());
+                    foto = new ImageIcon(ImageIO.read(musicas.get(r_actual).getImagen()));
+                    Image img = foto.getImage();
+                    Image newimg = img.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
+                    ImageIcon newicon = new ImageIcon(newimg);
+                    home.labelImagen.setIcon(newicon);
+                    System.out.println("TOCANDO MUSICA:" + musicas.get(r_actual).getUrl());
+                    home.btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/pausa.png"))); // NOI18N
+                    mi_reproductor.AbrirFichero(musicas.get(r_actual).getUrl());
+                    mi_reproductor.Play();
+                    
+                    /*AQUI VA  UN TIMER QUE VERIFIQUE CADA CIERTO TIEMPO SI LA VARIABLE DE LA MUSICA HA CAMBIADO*/
+
+                } catch (IOException ex) {
+                    Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+        if (e.getSource() == this.home.btnAtras) {
+            cargarMusicas(nombreLista);
+            System.out.println("ACTUAL BTN ATRAS:"+r_actual);
+            r_actual--;
+            System.out.println("VALOR ACTUAL:"+r_actual);
+            if (r_actual < musicas.size() && (r_actual >= 0)) {
+                
+                System.out.println("ATRAS:" + r_actual);
+                //cargarMusicas(NLista.getText());
+                try {
+                    //BufferedImage bi = ImageIO.read(musicas.get(r_actual).getImagen());
+                    //cargarImagen(home.labelImagen, bi);
+                    home.labelNMusica.setText(musicas.get(r_actual).getNmCancion());
+                    home.labelArtista.setText(musicas.get(r_actual).getNmArtista());
+                    foto = new ImageIcon(ImageIO.read(musicas.get(r_actual).getImagen()));
+                    Image img = foto.getImage();
+                    Image newimg = img.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
+                    ImageIcon newicon = new ImageIcon(newimg);
+                    home.labelImagen.setIcon(newicon);
+
+                    System.out.println("TOCANDO MUSICA:" + musicas.get(r_actual).getUrl());
+                    home.btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/pausa.png"))); // NOI18N
+                    mi_reproductor.AbrirFichero(musicas.get(r_actual).getUrl());
+                    mi_reproductor.Play();
+                    
+
+                    /*AQUI VA  UN TIMER QUE VERIFIQUE CADA CIERTO TIEMPO SI LA VARIABLE DE LA MUSICA HA CAMBIADO*/
+                } catch (IOException ex) {
+                    Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
     }
 
     private void cargarImagen(JLabel Caratula, BufferedImage bi) {
@@ -401,6 +489,12 @@ public class HomeController implements ActionListener {
                 + "INNER JOIN tb_artista ON tb_cancion.artista=tb_artista.id_artista\n"
                 + "WHERE tb_listap.nombre='" + nombreLista + "' ORDER BY id_dlista";
         InputStream is;
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         try {
             ResultSet rs = conexion.obtenerDatos(sql_cmusica);
             musicas = new ArrayList<>();
@@ -413,11 +507,7 @@ public class HomeController implements ActionListener {
                 String lista = rs.getString(6);
                 String duracion = rs.getString(7);
                 Integer decimales = duracion.length() - 1;
-                
-                System.out.println("ULTIMO:" +duracion.charAt(duracion.length()-1));
-                
-                
-                
+                System.out.println("ULTIMO:" + duracion.charAt(duracion.length() - 1));
                 String sSubCadena = duracion.substring((decimales - 1), decimales);
 
                 System.out.println("---------------------------------------");
@@ -430,9 +520,16 @@ public class HomeController implements ActionListener {
                 System.out.println("Duracion: " + duracion);
                 System.out.println("Ultimos Segundos: " + sSubCadena);
 
+                ArrayList datos = new ArrayList();
+                datos.add(rs.getInt(1));
+                datos.add(rs.getString(2).trim());
+                datos.add(rs.getString(3).trim());
+                datos.add(rs.getString(4).trim());
+                datos.add(rs.getString(6).trim());
+                modelo.addRow(datos.toArray());
                 musicas.add(new MusicasListasR(id_dlista, nm_cancion, nm_artista, ruta, is, duracion, lista));
-
             }
+            home.tb_canciones.setModel(modelo);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(home, "Error al cargar las musicas asociadas a la lista de Reproduccion", "Reproductor", JOptionPane.ERROR_MESSAGE);
             System.out.println("ERROR FAVORITOS:" + e);

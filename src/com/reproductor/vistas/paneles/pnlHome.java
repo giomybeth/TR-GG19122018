@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -30,6 +30,11 @@ public class pnlHome extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ListaReproduccion = new javax.swing.JDialog();
+        pnlTabla = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tb_canciones = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         pnlFondoOpcion = new javax.swing.JPanel();
         pnlIngreso = new javax.swing.JPanel();
         pnlIngresoNorte = new javax.swing.JPanel();
@@ -40,7 +45,7 @@ public class pnlHome extends javax.swing.JPanel {
         labelImagen = new javax.swing.JLabel();
         labelNMusica = new javax.swing.JLabel();
         labelArtista = new javax.swing.JLabel();
-        btnSiguiente1 = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
         btnPlay = new javax.swing.JButton();
         btnSiguiente2 = new javax.swing.JButton();
@@ -57,6 +62,66 @@ public class pnlHome extends javax.swing.JPanel {
         labelFavorito2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         pnlInternoRep1 = new javax.swing.JPanel();
+
+        pnlTabla.setBackground(new java.awt.Color(18, 18, 18));
+
+        jScrollPane4.setBorder(null);
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(452, 650));
+
+        tb_canciones.setBackground(new java.awt.Color(18, 18, 18));
+        tb_canciones.setForeground(new java.awt.Color(29, 185, 84));
+        tb_canciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tb_canciones.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tb_canciones.setSelectionBackground(new java.awt.Color(29, 185, 84));
+        jScrollPane4.setViewportView(tb_canciones);
+
+        javax.swing.GroupLayout pnlTablaLayout = new javax.swing.GroupLayout(pnlTabla);
+        pnlTabla.setLayout(pnlTablaLayout);
+        pnlTablaLayout.setHorizontalGroup(
+            pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlTablaLayout.setVerticalGroup(
+            pnlTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+        );
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Lista de Reproducción");
+
+        javax.swing.GroupLayout ListaReproduccionLayout = new javax.swing.GroupLayout(ListaReproduccion.getContentPane());
+        ListaReproduccion.getContentPane().setLayout(ListaReproduccionLayout);
+        ListaReproduccionLayout.setHorizontalGroup(
+            ListaReproduccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ListaReproduccionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(479, Short.MAX_VALUE))
+            .addGroup(ListaReproduccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ListaReproduccionLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnlTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        ListaReproduccionLayout.setVerticalGroup(
+            ListaReproduccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ListaReproduccionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(338, Short.MAX_VALUE))
+            .addGroup(ListaReproduccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ListaReproduccionLayout.createSequentialGroup()
+                    .addGap(41, 41, 41)
+                    .addComponent(pnlTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(41, Short.MAX_VALUE)))
+        );
 
         setBackground(new java.awt.Color(24, 24, 24));
         setPreferredSize(new java.awt.Dimension(1200, 710));
@@ -117,13 +182,13 @@ public class pnlHome extends javax.swing.JPanel {
         labelArtista.setForeground(new java.awt.Color(255, 255, 255));
         labelArtista.setText("ARTISTA");
 
-        btnSiguiente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/siguiente.png"))); // NOI18N
-        btnSiguiente1.setToolTipText("");
-        btnSiguiente1.setBorderPainted(false);
-        btnSiguiente1.setContentAreaFilled(false);
-        btnSiguiente1.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/siguiente.png"))); // NOI18N
+        btnSiguiente.setToolTipText("");
+        btnSiguiente.setBorderPainted(false);
+        btnSiguiente.setContentAreaFilled(false);
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSiguiente1ActionPerformed(evt);
+                btnSiguienteActionPerformed(evt);
             }
         });
 
@@ -147,7 +212,6 @@ public class pnlHome extends javax.swing.JPanel {
             }
         });
 
-        btnSiguiente2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/reproductor/img/reproductor/playList.png"))); // NOI18N
         btnSiguiente2.setToolTipText("");
         btnSiguiente2.setBorderPainted(false);
         btnSiguiente2.setContentAreaFilled(false);
@@ -173,7 +237,7 @@ public class pnlHome extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(btnSiguiente1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
                 .addComponent(btnSiguiente2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
@@ -192,7 +256,7 @@ public class pnlHome extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelArtista))
                     .addComponent(btnPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSiguiente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAtras, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSiguiente2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
@@ -376,9 +440,9 @@ public class pnlHome extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente1ActionPerformed
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSiguiente1ActionPerformed
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // TODO add your handling code here:
@@ -394,15 +458,18 @@ public class pnlHome extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog ListaReproduccion;
     public javax.swing.JButton btnAtras;
     public javax.swing.JButton btnPlay;
-    public javax.swing.JButton btnSiguiente1;
-    public javax.swing.JButton btnSiguiente2;
+    public javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnSiguiente2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     public javax.swing.JLabel labelArtista;
     private javax.swing.JLabel labelFavorito;
     private javax.swing.JLabel labelFavorito1;
@@ -420,6 +487,8 @@ public class pnlHome extends javax.swing.JPanel {
     public javax.swing.JPanel pnlInternoRep1;
     public javax.swing.JPanel pnlListas;
     public javax.swing.JPanel pnlRecientes;
+    public javax.swing.JPanel pnlTabla;
     private javax.swing.JPanel reproductor;
+    public javax.swing.JTable tb_canciones;
     // End of variables declaration//GEN-END:variables
 }
